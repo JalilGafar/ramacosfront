@@ -1,3 +1,23 @@
-<h2>Bienvenu Chez votre Grossiste en ligne</h2>
-<h4>commandez tout vos produits et faites-vous livrer en moins de 24H</h4>
-<app-product-list />
+<div class="card">
+    <h2>Bienvenu Chez votre Grossiste en ligne de produits cosmétics</h2>
+    <h4>commandez tout vos produits et faites-vous livrer en moins de 24H</h4>
+    <p>
+        Cette plate-forme est reservée uniquement aux revendeurs de produits cosmétics au détail.
+    </p>
+    <p>Si vous souhaitez enregistrer votre boutique pour avoir accès aux prix de gros, il vous suffit de cliquer ici.
+    </p>
+
+    <div class="content">
+        <div class="choice">
+            <button routerLink="customer/login" type="button" class="btn btn-primary">Entrer dans la boutique</button>
+            <p>J'ai déja un compte chez RamaCos</p>
+        </div>
+        <div class="choice">
+            <button routerLink="" type="button" class="btn btn-secondary">M'enregistrer</button>
+            <p>Je n'ai pas encore de compte chez RamaCos</p>
+        </div>
+    </div>
+    <button routerLink="" type="button" class="btn btn-dark">Admin space</button>
+</div>
+
+<!-- <app-product-list /> -->

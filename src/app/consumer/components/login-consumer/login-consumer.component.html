@@ -1,1 +1,27 @@
-<p>login-consumer works!</p>
+<div class="customer-login">
+    <h1>User Login</h1>
+    <form class="common-form" (ngSubmit)="onSubmitForm()" >
+        <div class="form-unit">
+            <label for="email"></label>
+            <input
+              type="email"
+              class="form-input"
+              name="email"
+              [(ngModel)]="Custumer"
+              placeholder="votre Email"
+            />
+        </div>
+        <div class="form-unit">
+            <label for="password"></label>
+            <input
+              type="password"
+              class="form-input"
+              name="pass"
+              [(ngModel)]="Custumer"
+              placeholder="votre mot de passe"
+            />
+        </div>
+      <button class="form-button" type="submit">Login</button>
+      <p>Want to Create Account ? <a (click)="openSignUp()" >Click Here</a></p>
+    </form>
+</div>

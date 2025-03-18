@@ -1,0 +1,35 @@
+<div class="product-item d-flex" >
+    <div class="p-1 w-20 bd-highlight  ">
+        <div class="card card-img">
+            <img src="./../../../../assets/KIDOUX.png" alt="">
+        </div>
+    </div>
+    <div class="p-1 w-35 bd-highlight flex-fill d-flex flex-column ">
+        <div class="product-info">{{produit.type}} {{produit.marque}}</div>
+        <div class="product-info">{{produit.taille }} {{produit.grammage}}</div>
+        <div class="product-info price"> {{produit.prix}} FCFA</div>
+    </div>
+    <div class="w-45 bd-highlight flex-fill qtite">
+        <form [formGroup]="quanti" action="">
+            <div class="container d-flex ">
+                <div class="flex-fill">
+                    <button class="numM" type="button" (click)="moins()" >-</button>
+                </div>
+                <div class="flex-fill">
+                    <input type="number" name="qte" id="qte" placeholder="00" [formControl]="qte" min="0">
+                </div>
+                <div class="flex-fill">
+                    <button class="numP" type="button" (click)="add()" >+</button>
+                </div>
+            </div>
+        </form>
+        <div class="mini-total">
+            @if (somme$ | async; as somme) {
+                @if (somme) { {{somme}} fcfa }
+                @else { 0 fcfa }
+            } @else { 0 fcfa }
+            
+        </div>
+    </div>
+    
+</div>

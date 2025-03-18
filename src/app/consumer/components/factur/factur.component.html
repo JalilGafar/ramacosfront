@@ -1,0 +1,26 @@
+@if (commande) {
+    <table class="table table-bordered table-sm" >
+        <thead>
+            <tr>
+                <th scope="col" >QTE</th>
+                <th scope="col" >DESIGNATION</th>
+                <th scope="col" >P. UNIT</th>
+                <th scope="col" >P. TOTAL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of commande; track item.id_prod) {
+                <tr>
+                    <th scope="row" > {{item.quantite}} </th>
+                    <td scope="row" > {{item.designation}} </td>
+                    <td scope="row" > {{item.pUnit}} </td>
+                    <td scope="row" > {{item.pTotal}} </td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3" >TOTAL</td>
+                <td> {{total}} </td>
+            </tr>
+        </tbody>
+    </table>
+}

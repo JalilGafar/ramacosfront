@@ -1,0 +1,51 @@
+<!-- @for (product of produits$ | async ; track product.id_prod) {
+    <app-product [produit]="product" />
+} -->
+
+<div class="domaines">
+    <div class="row py-3">
+        <div class="col-md-12">
+            <ul id="tabs" class="nav nav-tabs">
+                @for (item of types$|async; track $index) {
+                    @if ($index ===0) {
+                        <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link active"> {{item.type}} </a> </li>
+                    }@else {
+                        <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link"> {{item.type}} </a> </li>
+                    }
+                }
+            </ul>
+            <br>
+            <div id="tabsContent" class="tab-content">
+                @for (item of types$|async; track $index) {
+                    @if ($index === 0) {
+                        <div [id]="'tabix'+$index" class="tab-pane fade active show">
+                            @for (itemi of produits$ |async; track itemi.id_prod) {
+                                @if (itemi.type === item.type) {
+                                    <app-product [produit]="itemi" />
+                                    <!-- <div>{{itemi.type}} {{itemi.marque}}</div> -->
+                                    <!-- <button type="button" class="metier-item" (click)="voirFiliere(itemi.id_dom)">{{itemi.nom_dom}}</button> -->
+                                }
+                            }
+                        </div>
+                    } @else {
+                        <div [id]="'tabix'+$index" class="tab-pane fade">
+                            @for (itemi of produits$|async; track itemi.id_prod) {
+                                @if (itemi.type === item.type) {
+                                    <app-product [produit]="itemi" />
+                                    <!-- <div>{{itemi.type}} {{itemi.marque}}</div> -->
+                                    <!-- <button type="button" class="metier-item" (click)="voirFiliere(itemi.id_dom)">{{itemi.nom_dom}}</button> -->
+                                }
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="total d-flex flex-row justify-content-between">
+        <div class="total-value">Total {{total}} fcfa </div>
+        <div class="facture">
+            <button type="button" class="btn btn-success" (click)="bill()" >Voir ma facture</button>
+        </div>
+    </div>
+</div>
