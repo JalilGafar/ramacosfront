@@ -1,24 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SharedModule } from '../shared/shared.module';
 import { UserService } from '../_services/user.service';
 
 @Component({
-  selector: 'app-landing-page',
-  standalone: true,
-  imports: [
-    SharedModule,
-  ],
-  templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss'
+  selector: 'app-board-user',
+  imports: [],
+  templateUrl: './board-user.component.html',
+  styleUrls: ['./board-user.component.css']
 })
-export class LandingPageComponent implements OnInit{
+export class BoardUserComponent implements OnInit {
   content?: string;
 
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getPublicContent().subscribe({
+    this.userService.getUserBoard().subscribe({
       next: data => {
         this.content = data;
       },

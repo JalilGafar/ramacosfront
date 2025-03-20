@@ -1,0 +1,9 @@
+<div class="card">
+    <form (ngSubmit)="onSubmit()">
+        <input  type="text" [(ngModel)]="name"  name="name" placeholder="Nom en un seul mot" required >
+        <input type="password"  [(ngModel)]="password"  name="password" placeholder="Mot de passe" required >
+        <div class="submit">
+            <button type="submit">S'inscrire</button>
+        </div>
+    </form>
+</div>
