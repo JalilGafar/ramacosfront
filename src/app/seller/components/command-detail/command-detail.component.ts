@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Order } from '../../../core/model/order';
 
 @Component({
   selector: 'app-command-detail',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './command-detail.component.html',
   styleUrl: './command-detail.component.scss'
 })
-export class CommandDetailComponent {
+export class CommandDetailComponent implements OnInit {
+
+  @Input() order!: Order;
+
+  ngOnInit(): void {
+    
+  }
 
 }

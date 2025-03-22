@@ -1,0 +1,10 @@
+<div class="order-item d-flex justify-content-between">
+    <div class="firs d-flex flex-column">
+        <div class="id">#{{order.id_cmd}} </div>
+        <div class="amount"> {{order.montant | currency: '': '':'1.0-0' | replace:',':'.'}} FCFA </div>
+    </div>
+    <div class="second d-flex flex-column">
+        <div class="name"> {{order.client}} </div>
+        <div class="date"> {{order.date | date : 'shortDate' }}   |  {{order.date | date : 'H:m' }} </div>
+    </div>
+</div>

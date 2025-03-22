@@ -3,6 +3,19 @@
 } -->
 
 <div class="domaines">
+
+    <div class="total d-flex flex-row justify-content-between">
+        <div class="total-value">Total {{total | currency: '': '':'1.0-0' | replace:',':'.'}} fcfa </div>
+        <div class="facture">
+            <button 
+                type="button" 
+                class="btn btn-success" 
+                data-toggle="modal" 
+                data-target="#factureModal"
+            >Voir ma facture</button>
+        </div>
+    </div>
+
     <div class="row py-3">
         <div class="col-md-12">
             <ul id="tabs" class="nav nav-tabs">
@@ -42,10 +55,58 @@
             </div>
         </div>
     </div>
-    <div class="total d-flex flex-row justify-content-between">
-        <div class="total-value">Total {{total}} fcfa </div>
-        <div class="facture">
-            <button type="button" class="btn btn-success" (click)="bill()" >Voir ma facture</button>
+
+    <div class="modal fade" id="factureModal" tabindex="-1" aria-labelledby="factureModalLabeled" aria-hidden="true" >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-sm" >
+                        <thead>
+                            <tr>
+                                <th scope="col" >QTE</th>
+                                <th scope="col" >DESIGNATION</th>
+                                <th scope="col" >P. UNIT</th>
+                                <th scope="col" >P. TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of commande; track item.id_prod) {
+                                <tr>
+                                    <th scope="row" > {{item.quantite}} </th>
+                                    <td scope="row" > {{item.designation}} </td>
+                                    <td scope="row" > {{item.pUnit | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
+                                    <td scope="row" > {{item.pTotal | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="3" style="text-align: center;" >TOTAL</td>
+                                <th> {{total | currency: '': '':'1.0-0' | replace:',':'.'}} FCFA </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <div class="todo d-flex">
+                        <div class="annule">
+                            <button class="btn btn-danger" data-dismiss="modal" (click)="annuleCommande()" >Effacer la commande</button>
+                        </div>
+                        <div class="annule">
+                            <button class="btn btn-warning" data-dismiss="modal" >Modifier la commande</button>
+                        </div>
+                
+                        <div class="valid">
+                            <button class="btn btn-success" data-dismiss="modal" [disabled]="disabled" (click)="validedCommande()" >envoyer la commande</button>
+                        </div>
+                
+                    </div>
+                </div>
+
+            </div>    
         </div>
+
     </div>
+
 </div>

@@ -1,7 +1,25 @@
 .product-item{
-    padding: 7px;
-    margin: 7px;
+    padding: 0 7px;
+    margin: 7px 0;
     background-color: #EDF2F4;
+
+    hr{
+        margin-top: 0;
+        margin-bottom: 7px;
+
+    }
+
+    .product-img{
+        width: 20%;
+    }
+
+    .product-detail{
+        width: 80%;
+    }
+
+    .product-descr{
+        width: 50%;
+    }
 
     .card{
         img{
@@ -10,8 +28,10 @@
     }
 
     .card-img{
-        height: 100%;
-        width: 80px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
     }
 
     .price{
@@ -23,9 +43,11 @@
         width: fit-content;
     }
 
+    .product-elt{
+        padding-bottom: 7px;
+    }
+
     .qtite{
-        padding-top: 16px;
-        margin-left: 7px;
         form{
             .container{
                 padding: 0;
@@ -53,7 +75,7 @@
         }
         .mini-total{
             font-size: smaller;
-            margin-top: 3px;
+            margin-top: 7px;
             background-color: white;
             border-radius: 10px;
             color: #003049;

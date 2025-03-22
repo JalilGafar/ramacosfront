@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
+import { LoginConsumerComponent } from '../consumer/components/login-consumer/login-consumer.component';
+import { ConsumerStartComponent } from '../consumer/components/consumer-start/consumer-start.component';
 
 @Component({
   selector: 'app-board-user',
-  imports: [],
+  imports: [
+    ConsumerStartComponent
+  ],
   templateUrl: './board-user.component.html',
   styleUrls: ['./board-user.component.css']
 })

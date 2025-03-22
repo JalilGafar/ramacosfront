@@ -1,6 +1,6 @@
 .total{
     .total-value{
-        margin-left: 30px;
+        margin-left: 15px;
         padding: 7px;
         background-color: #D9D9D9;
         color: #003049;
@@ -9,5 +9,12 @@
     }
     .facture{
         margin-right: 15px;
+    }
+}
+
+.modal{
+    .btn{
+        margin: 3px;
+        padding: 3px;
     }
 }

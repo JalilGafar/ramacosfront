@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FooterComponent } from './core/components/footer/footer.component';
 // import { EventBusService } from './_shared/event-bus.service';
@@ -12,7 +12,8 @@ import { FooterComponent } from './core/components/footer/footer.component';
   standalone: true,
   imports: [
     RouterOutlet,
-    HeaderComponent,
+    RouterLink,
+    // HeaderComponent,
     FooterComponent
   ],
   // imports: [
@@ -22,7 +23,7 @@ import { FooterComponent } from './core/components/footer/footer.component';
   //   // LandingPageComponent
   // ] ,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   private roles: string[] = [];

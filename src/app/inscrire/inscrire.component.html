@@ -1,0 +1,53 @@
+<div class="col-md-12">
+    <div class="card card-container">
+
+      @if (!isSuccessful) {
+      <form
+        [formGroup]="newProspect"
+        name="form"
+        novalidate
+      >
+        <div class="form-group">
+          <input
+            placeholder="Nom de la boutique"
+            type="text"
+            class="form-control"
+            formControlName="username"
+          />
+          
+        </div>
+        <div class="form-group">
+          <input
+            placeholder="Localisation"
+            type="text"
+            class="form-control"
+            formControlName="localisation"
+          />
+
+        </div>
+        <div class="form-group">
+          <input
+            placeholder="Numéro de téléphone"
+            type="tel"
+            class="form-control"
+            formControlName="tel1"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            placeholder="Autre numéro Téléphone"
+            type="tel"
+            class="form-control"
+            formControlName="tel2"
+          />
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block" (click)="onSubmit()" >S'inscrire</button>
+        </div>
+      </form>
+      } @else {
+      <div class="alert alert-success">Votre enregistrement est en cours de traitement. Nous vous contacterons pour confirmation.</div>
+      }
+    </div>
+  </div>

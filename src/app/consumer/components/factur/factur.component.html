@@ -13,14 +13,25 @@
                 <tr>
                     <th scope="row" > {{item.quantite}} </th>
                     <td scope="row" > {{item.designation}} </td>
-                    <td scope="row" > {{item.pUnit}} </td>
-                    <td scope="row" > {{item.pTotal}} </td>
+                    <td scope="row" > {{item.pUnit | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
+                    <td scope="row" > {{item.pTotal | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
                 </tr>
             }
             <tr>
-                <td colspan="3" >TOTAL</td>
-                <td> {{total}} </td>
+                <td colspan="3" style="text-align: center;" >TOTAL</td>
+                <th> {{total | currency: '': '':'1.0-0' | replace:',':'.'}} FCFA </th>
             </tr>
         </tbody>
     </table>
+
+    <div class="todo d-flex">
+        <div class="annule">
+            <button class="btn btn-danger" (click)="annuleCommande()" >Annuler cette commande</button>
+        </div>
+
+        <div class="valid">
+            <button class="btn btn-success" (click)="validedCommande()" >envoyer cette commande</button>
+        </div>
+
+    </div>
 }

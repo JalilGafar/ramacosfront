@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { CommonModule } from '@angular/common';
       CommonModule
     ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   form: any = {
@@ -23,7 +24,10 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private storageService: StorageService) { }
+  constructor(private authService: AuthService, 
+              private storageService: StorageService,
+              private router : Router
+            ) { }
 
   ngOnInit(): void {
     if (this.storageService.isLoggedIn()) {
@@ -49,9 +53,12 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       }
     });
+
   }
 
   reloadPage(): void {
-    window.location.reload();
+     window.location.reload();
+    //  setTimeout( () => this.router.navigateByUrl('/user'), 1000 )
+     
   }
 }

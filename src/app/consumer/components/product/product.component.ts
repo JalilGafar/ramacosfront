@@ -5,13 +5,15 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { SharedModule } from '../../../shared/shared.module';
 import { ConsumerService } from '../../consumer.service';
 import { Commande } from '../../../core/model/commande';
+import { ReplacePipe } from '../../../shared/pipe/replace.pipe';
 
 @Component({
   selector: 'app-product',
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ReplacePipe
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
