@@ -12,13 +12,9 @@ import { AdminGuard } from './core/guard/admin.guard';
 import { InscrireComponent } from './inscrire/inscrire.component';
 
 export const routes: Routes = [
-     { path: '', component: LandingPageComponent},
-     { path: 'home', component: LandingPageComponent},
      { path: 'signUp', component: SignUpComponent},
      { path: 'customer', loadChildren: () => import('./consumer/consumer.module').then(m => m.ConsumerModule) },
     // { path: 'produits', component: ProductListComponent},
-     // { path:'**', redirectTo:''}
-
      { path: 'login', component: LoginComponent },
      { path: 'register', component: RegisterComponent },
      { path: 'inscrire', component: InscrireComponent },
@@ -26,5 +22,8 @@ export const routes: Routes = [
      { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard]  },
      { path: 'mod', component: BoardModeratorComponent, canActivate: [AuthGuard]  },
      { path: 'admin', component: BoardAdminComponent, canActivate: [AdminGuard]  },
-     { path: '', redirectTo: 'home', pathMatch: 'full' }
+     { path: 'home', component: LandingPageComponent},
+     { path: '', component: LandingPageComponent},
+     // { path: '', redirectTo: 'home', pathMatch: 'full' },
+     { path:'**', redirectTo:''}
 ];

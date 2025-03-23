@@ -6,7 +6,8 @@ export class Produit{
     taille!: string;
     grammage!: string;
     carton!: number;
-    prix!: number
+    prix!: number;
+    image!: string
     // constructor(
     //    public id_prod: number,
     //    public producteur: string,

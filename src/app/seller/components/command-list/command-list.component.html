@@ -16,7 +16,7 @@
                 <div class="modal-header d-flex">
                     <div class="num d-flex flex-column">
                         <div class="id-fac"> {{order.id_cmd}} </div>
-                        <div class="date-time"> {{order.date}} </div>
+                        <div class="date-time"> {{order.date | date : 'shortDate'}} || {{order.date | date : 'H:m'}} </div>
                     </div>
                     <div class="info d-flex flex-column ">
                         <div class="nom"> {{order.client}} </div>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="annule">
-                        <button class="btn btn-warning" data-dismiss="modal" >Modifier la commande</button>
+                        <button class="btn btn-warning" data-dismiss="modal" >Fermer</button>
                     </div>
                 </div>
     

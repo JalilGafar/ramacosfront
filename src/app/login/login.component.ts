@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
         this.reloadPage();
+        
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -57,8 +58,15 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-     window.location.reload();
-    //  setTimeout( () => this.router.navigateByUrl('/user'), 1000 )
+    
+    this.router.navigateByUrl('user').then(() => {
+      window.location.reload()
+    })
+    // window.location.reload();
+    // setTimeout( () => {
+    //   this.router.navigateByUrl('user');
+    //   console.log('REDIRECTION')
+    // } , 1000 )
      
   }
 }

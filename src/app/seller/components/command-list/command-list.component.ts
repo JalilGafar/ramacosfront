@@ -23,7 +23,7 @@ export class CommandListComponent implements OnInit {
 
   orders$!: Observable <Order[]>;
   order$!: Observable<OrderItem[]>;
-  order!: OrderCmd;
+  order= new OrderCmd;
 
   constructor(
     private sellerService : SellerService,

@@ -8,13 +8,15 @@ import { Router } from '@angular/router';
 import { ReplacePipe } from '../../../shared/pipe/replace.pipe';
 import { Commande } from '../../../core/model/commande';
 import { StorageService } from '../../../_services/storage.service';
+import { SpinerComponent } from '../spiner/spiner.component';
 
 @Component({
   selector: 'app-product-list',
   imports: [
     CommonModule,
     ProductComponent,
-    ReplacePipe
+    ReplacePipe,
+    SpinerComponent
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'

@@ -9,8 +9,12 @@ import { Prospect } from "../core/model/prospect";
 @Injectable ({
     providedIn: 'root'
 })
+
+
 export class ConsumerService {
     constructor (private http: HttpClient) {}
+
+    private loading: boolean = false;
     
     private _produits$ = new BehaviorSubject<Produit[]>([]);
     get produits$(): Observable<Produit[]> {
@@ -75,6 +79,16 @@ export class ConsumerService {
 
     modifier(){
       
+    }
+
+    // Loading Service 
+
+    setLoading(loading: boolean) {
+      this.loading = loading;
+    }
+  
+    getLoading(): boolean {
+      return this.loading;
     }
  
 }

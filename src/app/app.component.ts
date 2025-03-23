@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { lastValueFrom, Subscription } from 'rxjs';
 import { StorageService } from './_services/storage.service';
 import { AuthService } from './_services/auth.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
@@ -58,17 +58,29 @@ export class AppComponent {
     // });
   }
 
-  logout(): void {
-    this.authService.logout().subscribe({
-      next: res => {
-        console.log(res);
-        this.storageService.clean();
+  // logout(): void {
+  //   this.authService.logout().subscribe({
+  //     next: res => {
+  //       console.log(res);
+  //       this.storageService.clean()  ;
+  //       document.cookie = 'bezkoder-session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+  //       window.location.reload();
+  //     },
+  //     error: err => {
+  //       console.log(err);
+  //     }
+  //   });
+  // }
 
-        window.location.reload();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
+  async logout() : Promise<void> {
+    try {
+      // await this.authService.logout().toPromise();
+      await lastValueFrom(this.authService.logout())
+      this.storageService.clean();
+      document.cookie = 'bezkoder-session=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+      window.location.reload();
+    } catch(err){
+      console.log(err);
+    }
   }
 }
