@@ -20,7 +20,7 @@
     <button routerLink="" type="button" class="btn btn-dark">Admin space</button>
 </div> -->
 
-<div class="container">
+<!-- <div class="container">
     <header class="jumbotron">
         <h2>Bienvenu Chez votre Grossiste en ligne de produits cosmétics</h2>
         <h4>commandez tout vos produits et faites-vous livrer en moins de 24H</h4>
@@ -29,8 +29,32 @@
         </p>
         <p>Pour acceder à la plate-forme et pouvoir commander vos produits cosmétique au prix de gros, cliquez sur :  
         </p> <span><button class="btn btn-secondary" routerLink="/inscrire" >Enregistrer ma boutique</button></span>
-      <!-- <p>{{ content }}</p> -->
+      <p>{{ content }}</p>
     </header>
-</div>
+</div> -->
+
+<section class="hero-img">
+    <div class="hero-text">
+        <H1>votre Grossiste en ligne de produits cosmétics</H1>
+        <div class="loui">
+            @if (!isLoggedIn) {
+                <button class="btn btn-success btn-lg box" routerLink="login" >Entrer dans la boutique <br> Enter the online store</button>
+            } @else {
+                <button class="btn btn-success btn-lg box" routerLink="user" >Entrer dans la boutique <br> Enter the online store</button>
+            }
+        </div>
+    </div>
+</section>
+<section>
+    <p>commandez tout vos produits et faites-vous livrer en moins de 24H</p>
+    <p style="font-style: italic;" >Order all your products and get them delivered in under 24 hours!</p>
+</section>
+<section style="margin-top: 20px;" >
+    <app-carousel 
+        [images]="carouselImages"
+        [speed]="1"
+        direction="left">  
+    </app-carousel>
+</section>
 
 <!-- <app-product-list /> -->

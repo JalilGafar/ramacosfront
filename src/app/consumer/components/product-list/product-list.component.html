@@ -9,60 +9,69 @@
         <div class="facture">
             <button 
                 type="button" 
-                class="btn btn-success" 
+                class="btn btn-success btn-lg" 
                 data-toggle="modal" 
                 data-target="#factureModal"
             >Voir ma facture</button>
         </div>
     </div>
 
-    <app-spiner/>
-
-    <div class="row py-3">
-        <div class="col-md-12">
-            <ul id="tabs" class="nav nav-tabs">
-                @for (item of types$|async; track $index) {
-                    @if ($index ===0) {
-                        <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link active"> {{item.type}} </a> </li>
-                    }@else {
-                        <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link"> {{item.type}} </a> </li>
+    
+    @if (loading$ | async) {
+        <app-spiner/>
+    } @else {
+        <div class="prod row py-3">
+            <div class="col-md-12">
+                <ul id="tabs" class="nav nav-tabs">
+                    @for (item of types$|async; track $index) {
+                        @if ($index ===0) {
+                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link active"> {{item.type}} </a> </li>
+                        }@else {
+                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link"> {{item.type}} </a> </li>
+                        }
                     }
-                }
-            </ul>
-            <br>
-            <div id="tabsContent" class="tab-content">
-                @for (item of types$|async; track $index) {
-                    @if ($index === 0) {
-                        <div [id]="'tabix'+$index" class="tab-pane fade active show">
-                            @for (itemi of produits$ |async; track itemi.id_prod) {
-                                @if (itemi.type === item.type) {
-                                    <app-product [produit]="itemi" />
-                                    <!-- <div>{{itemi.type}} {{itemi.marque}}</div> -->
-                                    <!-- <button type="button" class="metier-item" (click)="voirFiliere(itemi.id_dom)">{{itemi.nom_dom}}</button> -->
+                </ul>
+                <br>
+                <div id="tabsContent" class="tab-content">
+                    @for (item of types$|async; track $index) {
+                        @if ($index === 0) {
+                            <div [id]="'tabix'+$index" class="tab-pane fade active show">
+                                @for (itemi of produits$ |async; track itemi.id_prod) {
+                                    @if (itemi.type === item.type) {
+                                        <app-product [produit]="itemi" />
+                                        <!-- <div>{{itemi.type}} {{itemi.marque}}</div> -->
+                                        <!-- <button type="button" class="metier-item" (click)="voirFiliere(itemi.id_dom)">{{itemi.nom_dom}}</button> -->
+                                    }
                                 }
-                            }
-                        </div>
-                    } @else {
-                        <div [id]="'tabix'+$index" class="tab-pane fade">
-                            @for (itemi of produits$|async; track itemi.id_prod) {
-                                @if (itemi.type === item.type) {
-                                    <app-product [produit]="itemi" />
-                                    <!-- <div>{{itemi.type}} {{itemi.marque}}</div> -->
-                                    <!-- <button type="button" class="metier-item" (click)="voirFiliere(itemi.id_dom)">{{itemi.nom_dom}}</button> -->
+                            </div>
+                        } @else {
+                            <div [id]="'tabix'+$index" class="tab-pane fade">
+                                @for (itemi of produits$|async; track itemi.id_prod) {
+                                    @if (itemi.type === item.type) {
+                                        <app-product [produit]="itemi" />
+                                        <!-- <div>{{itemi.type}} {{itemi.marque}}</div> -->
+                                        <!-- <button type="button" class="metier-item" (click)="voirFiliere(itemi.id_dom)">{{itemi.nom_dom}}</button> -->
+                                    }
                                 }
-                            }
-                        </div>
+                            </div>
+                        }
                     }
-                }
+                </div>
             </div>
         </div>
-    </div>
+    }
+
 
     <div class="modal fade" id="factureModal" tabindex="-1" aria-labelledby="factureModalLabeled" aria-hidden="true" >
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-
+                <div class="modal-header d-flex">
+                    <div class="num d-flex flex-column">
+                        <div class="date-time"> {{date| date : 'shortDate'}} || {{date | date : 'H:m'}} </div>
+                    </div>
+                    <div class="info d-flex flex-column ">
+                        <div class="nom"> {{currentUser}} </div>
+                    </div>
                 </div>
                 <div class="modal-body">
                     <table class="table table-bordered table-sm" >
@@ -70,7 +79,7 @@
                             <tr>
                                 <th scope="col" >QTE</th>
                                 <th scope="col" >DESIGNATION</th>
-                                <th scope="col" >P. UNIT</th>
+                                <th scope="col" >P. UNIT</th> 
                                 <th scope="col" >P. TOTAL</th>
                             </tr>
                         </thead>

@@ -14,8 +14,13 @@ import { Prospect } from "../core/model/prospect";
 export class ConsumerService {
     constructor (private http: HttpClient) {}
 
-    private loading: boolean = false;
+    // private loading: boolean = false;
     
+    private _loading$ = new BehaviorSubject<boolean>(false);
+    get loading$(): Observable<boolean> {
+      return this._loading$.asObservable();
+    }
+
     private _produits$ = new BehaviorSubject<Produit[]>([]);
     get produits$(): Observable<Produit[]> {
       return this._produits$.asObservable();
@@ -29,13 +34,18 @@ export class ConsumerService {
 
     private _total$ = new BehaviorSubject<number>(0);
     total$ = this._total$.asObservable();
+
+    // Change la valeur de _loading
+    private setLoadingStatus(loading: boolean) {
+        this._loading$.next(loading)
+    }
   
-    getProductsFromServer(){
-      //this.setLoadingStatus(true);
+    getProductsFromServer(): Observable<Produit[]>{
+      this.setLoadingStatus(true);
       return this.http.get<Produit[]>(`${environment.apiUrl}/api/products`).pipe(
         tap(produits =>{
           this._produits$.next(produits);
-      //    this.setLoadingStatus(false); 
+          this.setLoadingStatus(false); 
         })
       );
     }
@@ -69,12 +79,15 @@ export class ConsumerService {
     }
 
     sendCommande(user: string){
+      this.setLoadingStatus(true);
       let montant = this.total;
       let laCommande =   JSON.stringify(this.commande);
       this._total$.next(0);
       this._commande$.next([]);
       // console.log(user)
-      return this.http.post<{commande:string, total:number}>(`${environment.apiUrl}/api/products/commande`,  {commande: laCommande , total:montant, client: user })
+      return this.http.post<{commande:string, total:number}>(`${environment.apiUrl}/api/products/commande`,  {commande: laCommande , total:montant, client: user }).pipe(
+        tap(resp => {this.setLoadingStatus(false); console.log('eeeeeeeeeeeeeeee') })
+      )
     }
 
     modifier(){
@@ -83,12 +96,12 @@ export class ConsumerService {
 
     // Loading Service 
 
-    setLoading(loading: boolean) {
-      this.loading = loading;
-    }
+    // setLoading(loading: boolean) {
+    //   this.loading = loading;
+    // }
   
-    getLoading(): boolean {
-      return this.loading;
-    }
+    // getLoading(): boolean {
+    //   return this.loading;
+    // }
  
 }

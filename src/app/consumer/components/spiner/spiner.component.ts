@@ -8,5 +8,5 @@ import { ConsumerService } from '../../consumer.service';
   styleUrl: './spiner.component.scss'
 })
 export class SpinerComponent {
-  constructor(public consumeService: ConsumerService){}
+  constructor(){}
 }

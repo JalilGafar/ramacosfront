@@ -1,0 +1,7 @@
+<div class="carousel-container" (mouseenter)="togglePause()" (mouseleave)="togglePause()">
+    <div #carouselTrack class="carousel-track">
+      <div class="carousel-slide" *ngFor="let image of images">
+        <img [src]="image" alt="Slide">
+      </div>
+    </div>
+  </div>

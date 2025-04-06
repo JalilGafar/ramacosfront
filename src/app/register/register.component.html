@@ -6,94 +6,116 @@
         class="profile-img-card"
       />
       @if (!isSuccessful) {
-      <form
+        <form
+        [formGroup]="newClient"
         name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
         novalidate
       >
         <div class="form-group">
-          <label for="username">Username</label>
           <input
+            placeholder="Nom commercial"
             type="text"
             class="form-control"
-            name="username"
-            [(ngModel)]="form.username"
-            required
-            minlength="3"
-            maxlength="20"
-            #username="ngModel"
-            [ngClass]="{ 'is-invalid': f.submitted && username.errors }"
+            formControlName="username"
+            autocomplete="username"
           />
-          @if (username.errors && f.submitted) {
-          <div class="invalid-feedback">
-            @if (username.errors['required']) {
-            <div>Username is required</div>
-            }
-            @if (username.errors['minlength']) {
-            <div>Username must be at least 3 characters</div>
-            }
-            @if (username.errors['maxlength']) {
-            <div>Username must be at most 20 characters</div>
-            }
-          </div>
+          @if (newClient.controls['username'].invalid && newClient.controls['username'].touched) {
+            <div class="error-message">Le nom est requis</div>
           }
         </div>
+
         <div class="form-group">
-          <label for="email">Email</label>
           <input
-            type="email"
-            class="form-control"
-            name="email"
-            [(ngModel)]="form.email"
-            required
-            email
-            #email="ngModel"
-            [ngClass]="{ 'is-invalid': f.submitted && email.errors }"
-          />
-          @if (email.errors && f.submitted) {
-          <div class="invalid-feedback">
-            @if (email.errors['required']) {
-            <div>Email is required</div>
-            }
-            @if (email.errors['email']) {
-            <div>Email must be a valid email address</div>
-            }
-          </div>
-          }
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input
+            placeholder="Mot de passe"
             type="password"
             class="form-control"
-            name="password"
-            [(ngModel)]="form.password"
-            required
-            minlength="6"
-            #password="ngModel"
-            [ngClass]="{ 'is-invalid': f.submitted && password.errors }"
+            formControlName="password"
+            autocomplete="new-password"
           />
-          @if (password.errors && f.submitted) {
-          <div class="invalid-feedback">
-            @if (password.errors['required']) {
-            <div>Password is required</div>
+        </div>
+        @if (newClient.controls['password'].invalid && newClient.controls['username'].touched){
+          <div class="error-message">
+            @if (newClient.controls['password'].hasError('required')) {
+              Le mot de passe est requis
             }
-            @if (password.errors['minlength']) {
-            <div>Password must be at least 6 characters</div>
+            @if (newClient.controls['password'].hasError('minlength')) {
+              Minimum 6 caractères
             }
           </div>
+        }
+
+        <div class="form-group">
+          <input
+            placeholder="Confirmer le mot de passe"
+            type="password"
+            class="form-control"
+            formControlName="confirmPassword"
+          />
+        </div>
+        @if (newClient.hasError('passwordMismatch') && newClient.controls['confirmPassword'].touched) {
+          <div class="form-group">
+            Les mots de passe ne correspondent pas.
+          </div>
+        }
+
+
+        <div class="form-group">
+          <input
+            placeholder="Localisation"
+            type="text"
+            class="form-control"
+            formControlName="localisation"
+            autocomplete="localisation"
+          />
+          @if (newClient.controls['localisation'].invalid && newClient.controls['localisation'].touched) {
+            <div class="error-message">La localisation est requise</div>
           }
         </div>
+
+
         <div class="form-group">
-          <button class="btn btn-primary btn-block">Sign Up</button>
+          <input
+            placeholder="Numéro de téléphone"
+            type="tel"
+            class="form-control"
+            formControlName="tel1"
+            autocomplete="tel1"
+          />
+          @if (newClient.controls['tel1'].invalid && newClient.controls['tel1'].touched) {
+            <div class="error-message">
+              @if (newClient.controls['tel1'].hasError('required')) {
+                Le numéro de téléphone est requis
+              }
+              @if (newClient.controls['tel1'].hasError('pattern')) {
+                Format invalide (9 chiffres requis)
+              }
+            </div>
+          }
         </div>
-  
-        @if (f.submitted && isSignUpFailed) {
-        <div class="alert alert-warning">
-          Signup failed!<br />{{ errorMessage }}
+
+        <div class="form-group">
+          <input
+            placeholder="Autre numéro Téléphone"
+            type="tel"
+            class="form-control"
+            formControlName="tel2"
+            autocomplete="tel2"
+          />
+          @if (newClient.controls['tel2'].touched) {
+            <div class="error-message">
+              @if (newClient.controls['tel2'].hasError('pattern')) {
+                Format invalide (9 chiffres requis)
+              }
+            </div>
+          }
         </div>
-        }
+
+
+        
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block" (click)="onSubmit()" [disabled]="!newClient.valid" >S'inscrire</button>
+        </div>
       </form>
       } @else {
       <div class="alert alert-success">Your registration is successful!</div>

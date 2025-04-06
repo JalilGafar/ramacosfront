@@ -60,7 +60,9 @@ export class LoginComponent implements OnInit {
   reloadPage(): void {
     
     this.router.navigateByUrl('user').then(() => {
-      window.location.reload()
+      setTimeout( () => {
+          window.location.reload()
+        } , 1000 )
     })
     // window.location.reload();
     // setTimeout( () => {
@@ -69,4 +71,17 @@ export class LoginComponent implements OnInit {
     // } , 1000 )
      
   }
+
+  discover(){
+    let c = encodeURI('Je souhaite avoir un accès à la plateforme Ramacos.com !');
+    let url = `https://wa.me/237679197112?text=${c}`
+    window.location.href = url;
+  }
+  
+  discoveren(){
+    let c = encodeURI('I would like to request access to the Ramacos.com platform. !');
+    let url = `https://wa.me/237679197112?text=${c}`
+    window.location.href = url;
+  }
+
 }

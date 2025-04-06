@@ -4,3 +4,26 @@
     margin-right: auto;
     width: 50%;
 }
+.card{
+    margin: 3px;
+}
+.theform{
+    padding: 10px;
+}
+.msg{
+    background-image: linear-gradient(#ffffff, #ffffffbd), url("../../../public/images/store.webp");
+    padding-bottom: 50px;
+    margin-bottom: 40px;
+    p{
+        text-align: center;
+        margin: 15px;
+        padding-top: 30px;
+        font-weight: 500;
+        font-size: large;
+    }
+}
+
+.register{
+    margin-top: 40px;
+    text-align: center;
+}

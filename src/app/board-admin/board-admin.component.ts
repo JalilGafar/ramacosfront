@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
 import { CommandListComponent } from '../seller/components/command-list/command-list.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-board-admin',
   imports: [
-    CommandListComponent
+    CommandListComponent,
+    RouterLink
   ],
   templateUrl: './board-admin.component.html',
   styleUrls: ['./board-admin.component.scss']
