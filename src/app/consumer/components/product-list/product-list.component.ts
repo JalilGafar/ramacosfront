@@ -101,20 +101,36 @@ export class ProductListComponent implements OnInit {
   
     validedCommande(){
       //this.consService.sendCommande(this.currentUser).subscribe();
-      const pEl:any = document.getElementById('factureModal');
+      // const pEl = document.getElementById('factureModal');
+      // if (pEl) {        
+      //   const originalHeight = +pEl.style.height
+      //   // Désactiver le défilement temporairement
+      //   document.body.style.overflow = 'hidden';
+  
+      //   html2canvas(
+      //     pEl, 
+      //     {
+      //       //scrollY: -window.scrollY, // Compensation du défilement
+      //       height: originalHeight, // Hauteur totale de la div
+      //       windowHeight: pEl.scrollHeight, // Hauteur de la fenêtre virtuelle
+      //       scale: 1, // Éviter le redimensionnement
+      //     }
+      //   ).then((canvas)=>{
+      //     const pdf = new jsPDF('p', 'pt','a4',true);
+      //     var width = pdf.internal.pageSize.getWidth();
+      //     var height = pdf.internal.pageSize.getHeight();
+      //     pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 10, width, height, undefined,'FAST');
+      //     pdf.setProperties({
+      //       title:'Ma facture',
+      //       subject:'Commande du 23/03/2025',
+      //       author:'Ramacos.com'
+      //     })
+   
+      //     pdf.setFontSize(12);
+      //     pdf.save('Facture_'+this.datePipe.transform(this.date, 'yyyy-MM-dd')+'.pdf')
+      //   })  
+      // }
 
-      html2canvas(pEl, {scale:2}).then((canvas)=>{
-        const pdf = new jsPDF('p', 'pt','a5',true);
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 10, 300, 500, undefined,'FAST');
-        pdf.setProperties({
-          title:'Ma facture',
-          subject:'Commande du 23/03/2025',
-          author:'Ramacos.com'
-        })
- 
-        pdf.setFontSize(12);
-        pdf.save('Facture_'+this.datePipe.transform(this.date, 'yyyy-MM-dd')+'.pdf')
-      })  
 
       this.consService.sendCommande(this.currentUser).subscribe();
       this.route.navigateByUrl('customer/commande');

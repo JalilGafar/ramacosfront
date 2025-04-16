@@ -65,13 +65,23 @@ export class ProductComponent implements OnInit {
           // this.newCommand.quantite = Value;
           // this.newCommand.pUnit = this.produit.prix;
           // this.newCommand.pTotal = this.produit.prix * Value
-          this.consumerService.updateCommande({
-            id_prod:this.produit.id_prod, 
-            designation: this.produit.type+' '+this.produit.marque+' '+this.produit.taille , 
-            quantite:Value,
-            pUnit: this.produit.prix,
-            pTotal : this.produit.prix * Value
-          })
+          if (this.produit.type === 'Divers') {
+            this.consumerService.updateCommande({
+              id_prod:this.produit.id_prod, 
+              designation: this.produit.marque+' '+this.produit.taille , 
+              quantite:Value,
+              pUnit: this.produit.prix,
+              pTotal : this.produit.prix * Value
+            })
+          } else {
+            this.consumerService.updateCommande({
+              id_prod:this.produit.id_prod, 
+              designation: this.produit.type+' '+this.produit.marque+' '+this.produit.taille , 
+              quantite:Value,
+              pUnit: this.produit.prix,
+              pTotal : this.produit.prix * Value
+            })
+          }
           // console.log({designation: this.produit.type + ' ' + this.produit.marque, quantite:Value})
           return Value *  this.produit.prix
         } else {

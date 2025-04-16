@@ -31,6 +31,7 @@ export class AppComponent {
   showAdminBoard = false;
   showModeratorBoard = false;
   username?: string;
+  isMenuOpen = false;
 
   eventBusSub?: Subscription;
 
@@ -56,6 +57,16 @@ export class AppComponent {
     // this.eventBusSub = this.eventBusService.on('logout', () => {
     //   this.logout();
     // });
+  }
+
+  // Fonction pour basculer l'état du menu
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Fonction pour fermer le menu
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 
   // logout(): void {

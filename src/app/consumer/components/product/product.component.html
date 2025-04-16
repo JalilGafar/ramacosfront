@@ -6,7 +6,11 @@
     </div>
     <div class="product-detail d-flex flex-column"  >
         <div class="product-name">
-            <div class="product-info">{{produit.type}} {{produit.marque}}</div>
+            @if (produit.type === 'Divers') {
+                <div class="product-info">{{produit.marque}}</div>
+            }@else {
+                <div class="product-info">{{produit.type}} {{produit.marque}}</div>
+            }
             <hr>
         </div>
         <div class="product-elt d-flex">

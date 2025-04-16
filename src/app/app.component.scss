@@ -1,15 +1,15 @@
-.app{
+.app {
     min-height: 100dvh;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: minmax(0, 1fr);
 }
 
-.containers{
+.containers {
     padding-bottom: 70px;
 }
 
-.the-footer{
+.the-footer {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -25,12 +25,13 @@
 }
 
 @keyframes grow-and-shrink {
-0% {
-    transform: scale(1);
-}
-100% {
-    transform: scale(1.1);
-}
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
 }
 
 .box {
@@ -38,4 +39,79 @@
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Styles pour le menu hamburger */
+.hamburger {
+    display: none;
+    /* Caché par défaut */
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+}
+
+/* Styles pour les écrans mobiles */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        /* Afficher le bouton hamburger sur mobile */
+    }
+
+    .nav-links {
+        display: none;
+        /* Cacher les liens par défaut */
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        /* Ajuster en fonction de la hauteur du header */
+        right: 0;
+        background-color: #333;
+        width: 100%;
+        text-align: center;
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+        /* Afficher les liens lorsque le menu est ouvert */
+        z-index: 91;
+    }
 }
