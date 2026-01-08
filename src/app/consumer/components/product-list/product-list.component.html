@@ -25,9 +25,11 @@
                 <ul id="tabs" class="nav nav-tabs">
                     @for (item of types$|async; track $index) {
                         @if ($index ===0) {
-                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link active"> {{item.type}} </a> </li>
+                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link" [class.active]="selectedTabIndex === $index" (click)="selectTab($index, $event)"> {{item.type}} </a> </li>
                         }@else {
-                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link"> {{item.type}} </a> </li>
+                            <!-- <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link" > {{item.type}} </a> </li> -->
+                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link" [class.active]="selectedTabIndex === $index"
+                                (click)="selectTab($index, $event)"> {{item.type}} </a> </li>
                         }
                     }
                 </ul>
@@ -35,7 +37,8 @@
                 <div id="tabsContent" class="tab-content">
                     @for (item of types$|async; track $index) {
                         @if ($index === 0) {
-                            <div [id]="'tabix'+$index" class="tab-pane fade active show">
+                            <!-- <div [id]="'tabix'+$index" class="tab-pane fade active show"> -->
+                            <div [id]="'tabix'+$index" class="tab-pane fade" [class.show]="selectedTabIndex === $index" [class.active]="selectedTabIndex === $index">
                                 @for (itemi of produits$ |async; track itemi.id_prod) {
                                     @if (itemi.type === item.type) {
                                         <app-product [produit]="itemi" />
@@ -45,7 +48,8 @@
                                 }
                             </div>
                         } @else {
-                            <div [id]="'tabix'+$index" class="tab-pane fade">
+                            <!-- <div [id]="'tabix'+$index" class="tab-pane fade"> -->
+                            <div [id]="'tabix'+$index" class="tab-pane" [class.show]="selectedTabIndex === $index"  [class.active]="selectedTabIndex === $index">
                                 @for (itemi of produits$|async; track itemi.id_prod) {
                                     @if (itemi.type === item.type) {
                                         <app-product [produit]="itemi" />
@@ -57,6 +61,18 @@
                         }
                     }
                 </div>
+                <br>
+                <ul id="tabs" class="nav nav-tabs">
+                    @for (item of types$|async; track $index) {
+                        @if ($index ===0) {
+                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link" [class.active]="selectedTabIndex === $index" (click)="selectTab($index, $event)"> {{item.type}} </a> </li>
+                        }@else {
+                            <!-- <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link"> {{item.type}} </a> </li> -->
+                            <li class="nav-item"> <a href="" [attr.data-target]="'#tabix'+$index" data-toggle="tab" class="nav-link" [class.active]="selectedTabIndex === $index"
+                                (click)="selectTab($index, $event)"> {{item.type}} </a> </li>
+                        }
+                    }
+                </ul>
             </div>
         </div>
     }

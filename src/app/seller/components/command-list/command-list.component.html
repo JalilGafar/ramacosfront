@@ -1,11 +1,21 @@
-@for (itemi of orders$ |async; track itemi.id_cmd) {
-    <app-command-item [order]="itemi"  />
-    <button 
-        class="btn btn-success" 
-        (click)="selectOrderItem(itemi.id_cmd)" 
-        data-toggle="modal" 
-        data-target="#factureModal"
-    ></button>
+@if (loading$ | async) {
+    <app-spiner/>
+} @else {
+    @for (itemi of orders$ |async; track itemi.id_cmd) {
+        <div class="cmditem d-flex flex-row">
+            <div class="summary flex-fill">
+                <app-command-item [order]="itemi"  />
+            </div>
+            <div class="butt flex-fill ml-auto">
+                <button 
+                    class="btn btn-success" 
+                    (click)="selectOrderItem(itemi.id_cmd)" 
+                    data-toggle="modal" 
+                    data-target="#factureModal"
+                >Voir</button>
+            </div>
+        </div>
+    }
 }
 
 @if (order) {
@@ -23,32 +33,37 @@
                         <div class="localisation"> {{order.localisation}} </div>
                     </div>
                 </div>
-                <div class="modal-body">
-                    <table class="table table-bordered table-sm" >
-                        <thead>
-                            <tr>
-                                <th scope="col" >QTE</th>
-                                <th scope="col" >DESIGNATION</th>
-                                <th scope="col" >P. UNIT</th>
-                                <th scope="col" >P. TOTAL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (item of order.contenu; track item.id_prod) {
+                @if (loading$ | async) {
+                    <app-spiner/>
+                } @else {
+
+                    <div class="modal-body">
+                        <table class="table table-bordered table-sm" >
+                            <thead>
                                 <tr>
-                                    <th scope="row" > {{item.quantite}} </th>
-                                    <td scope="row" > {{item.designation}} </td>
-                                    <td scope="row" > {{item.pUnit | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
-                                    <td scope="row" > {{item.pTotal | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
+                                    <th scope="col" >QTE</th>
+                                    <th scope="col" >DESIGNATION</th>
+                                    <th scope="col" >P. UNIT</th>
+                                    <th scope="col" >P. TOTAL</th>
                                 </tr>
-                            }
-                            <tr>
-                                <td colspan="3" style="text-align: center;" >TOTAL</td>
-                                <th> {{order.montant| currency: '': '':'1.0-0' | replace:',':'.'}} FCFA </th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @for (item of order.contenu; track item.id_prod) {
+                                    <tr>
+                                        <th scope="row" > {{item.quantite}} </th>
+                                        <td scope="row" > {{item.designation}} </td>
+                                        <td scope="row" > {{item.pUnit | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
+                                        <td scope="row" > {{item.pTotal | currency: '': '':'1.0-0' | replace:',':'.'}} </td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="3" style="text-align: center;" >TOTAL</td>
+                                    <th> {{order.montant| currency: '': '':'1.0-0' | replace:',':'.'}} FCFA </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                }
                 <div class="modal-footer">
                     <div class="annule">
                         <button class="btn btn-warning" data-dismiss="modal" >Fermer</button>

@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
     if (this.storageService.isLoggedIn()) {
       this.isLoggedIn = true;
       this.roles = this.storageService.getUser().roles;
+      this.router.navigateByUrl('/user')
+      // setTimeout( () => {this.router.navigateByUrl('/user')} , 2000 )
     }
   }
 
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
+        window.location.reload();
         
       },
       error: err => {
@@ -55,21 +57,6 @@ export class LoginComponent implements OnInit {
       }
     });
 
-  }
-
-  reloadPage(): void {
-    
-    this.router.navigateByUrl('user').then(() => {
-      setTimeout( () => {
-          window.location.reload()
-        } , 1000 )
-    })
-    // window.location.reload();
-    // setTimeout( () => {
-    //   this.router.navigateByUrl('user');
-    //   console.log('REDIRECTION')
-    // } , 1000 )
-     
   }
 
   discover(){

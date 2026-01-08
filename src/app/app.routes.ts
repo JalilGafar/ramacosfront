@@ -10,6 +10,7 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { AuthGuard } from './core/guard/auth.guard';
 import { AdminGuard } from './core/guard/admin.guard';
 import { InscrireComponent } from './inscrire/inscrire.component';
+import { FacturListComponent } from './consumer/components/factur-list/factur-list.component';
 
 export const routes: Routes = [
      { path: 'signUp', component: SignUpComponent},
@@ -19,11 +20,11 @@ export const routes: Routes = [
      { path: 'register', component: RegisterComponent },
      { path: 'inscrire', component: InscrireComponent },
      { path: 'profile', component: ProfileComponent },
+     { path: 'bill', component: FacturListComponent },
      { path: 'user', component: BoardUserComponent, canActivate: [AuthGuard]  },
      { path: 'mod', component: BoardModeratorComponent, canActivate: [AuthGuard]  },
      { path: 'admin', component: BoardAdminComponent, canActivate: [AdminGuard]  },
      { path: 'home', component: LandingPageComponent},
      { path: '', component: LandingPageComponent},
-     // { path: '', redirectTo: 'home', pathMatch: 'full' },
      { path:'**', redirectTo:''}
 ];

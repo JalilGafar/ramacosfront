@@ -8,13 +8,16 @@ import { CommandItemComponent } from '../command-item/command-item.component';
 import { ReplacePipe } from '../../../shared/pipe/replace.pipe';
 import { OrderCmd } from '../../../core/model/orderCmd';
 import { Commande } from '../../../core/model/commande';
+import { ConsumerService } from '../../../consumer/consumer.service';
+import { SpinerComponent } from '../../../consumer/components/spiner/spiner.component';
 
 @Component({
   selector: 'app-command-list',
   imports: [
     CommandItemComponent,
     CommonModule,
-    ReplacePipe
+    ReplacePipe,
+    SpinerComponent
   ],
   templateUrl: './command-list.component.html',
   styleUrl: './command-list.component.scss'
@@ -24,12 +27,14 @@ export class CommandListComponent implements OnInit {
   orders$!: Observable <Order[]>;
   order$!: Observable<OrderItem[]>;
   order= new OrderCmd;
+  loading$!: Observable<boolean>;
 
   constructor(
-    private sellerService : SellerService,
+    private sellerService : SellerService
   ){}
 
   ngOnInit(): void {
+    this.loading$ = this.sellerService.loading$;
     this.sellerService.getOrderFromServer().subscribe()
     this.orders$ = this.sellerService.order$
   }

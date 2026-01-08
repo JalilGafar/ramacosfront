@@ -8,6 +8,14 @@
       <div class="logo">
         <a routerLink="" class="navbar-brand">RamaCos</a>
       </div>
+
+      <ul class="navbar-nav">
+        @if (isLoggedIn) {
+          <li class="nav-item">
+            <a  class="nav-link box" routerLink="user" (click)="closeMenu()">Boutique</a>
+          </li>
+        }
+      </ul>
       
 
       <ul class="navbar-nav mr-auto nav-links" [class.active]="isMenuOpen" routerLinkActive="active">
@@ -27,6 +35,9 @@
         @if (isLoggedIn) {
           <li class="nav-item">
             <a  class="nav-link box" routerLink="user" (click)="closeMenu()">Boutique</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link" routerLink="bill" (click)="closeMenu()">Mes commandes</a>
           </li>
         }
         @if (!isLoggedIn) {
@@ -56,11 +67,11 @@
   <!-- <div class="the-header">
   </div> -->
   
-  <div class="containers">
+  <div class="containers" (click)="closeMenu()">
     <router-outlet></router-outlet>
   </div>
 
-  <div class="the-footer">
+  <div class="the-footer" (click)="closeMenu()">
     <app-footer  />
   </div>
 </div>

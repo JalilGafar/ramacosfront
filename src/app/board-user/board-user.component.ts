@@ -17,9 +17,11 @@ export class BoardUserComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
+    // window.location.reload()
     this.userService.getUserBoard().subscribe({
       next: data => {
         this.content = data;
+        // window.location.reload()
       },
       error: err => {
         if (err.error) {

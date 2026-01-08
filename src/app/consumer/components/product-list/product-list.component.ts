@@ -37,6 +37,7 @@ export class ProductListComponent implements OnInit {
     disabled = true;
     loading$!: Observable<boolean>;
     date = Date.now();
+    selectedTabIndex = 0;
 
     @ViewChild('factureModal') pdfEl!: ElementRef;
 
@@ -87,6 +88,11 @@ export class ProductListComponent implements OnInit {
       
     }
 
+
+    selectTab(index: number, event: Event) {
+      event.preventDefault(); // évite le rechargement
+      this.selectedTabIndex = index;
+    }
     
 
     // bill(){

@@ -4,6 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { UserService } from '../_services/user.service';
 import { CarouselComponent } from '../carousel/carousel.component';
 import { StorageService } from '../_services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -46,6 +47,7 @@ export class LandingPageComponent implements OnInit{
   constructor(
     private userService: UserService,
     private storageService: StorageService,
+    private router : Router
   ) { }
 
   ngOnInit(): void {
@@ -67,6 +69,10 @@ export class LandingPageComponent implements OnInit{
         }
       }
     });
+    if (this.storageService.isLoggedIn()) {
+      this.router.navigateByUrl('/user')
+      // setTimeout( () => {this.router.navigateByUrl('/user')} , 2000 )
+    }
   }
 
   
